@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--标签的注释方式 ctrl＋斜杠-->
+<!--标签：双标签和单标签-->
+ <!--行内标签和块级标签-->
+<!--属性-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8"  name="viewport" content="width=device-width,initial-scale=1 user-scalable=no">
+    <title>学生选课系统</title>
+    <!--用来加载外部资源的标签-->
+    <!--相对路径和绝对路径-->
+    <link rel="short icon" href="/image/icon.png">
+    <!--加载外部样式CSS,一个项目有很多地方样式都一样时-->
+    <link rel="stylesheet"  href="/css/ExternalStyle.css">
+    <!--加载页内样式CSS,一个项目在项目出现的次数比较少,代码量稍大时，-->
+    <style>
+       .box {
+    font-size: 1em;
+    font-family: 仿宋, serif;
+    width: 60%;
+    display: block;
+    margin-left: 10%;
+    opacity: 0.8;
+    padding: 0.2em;
+    color: #000000;
+    border-radius: 10px;
+    background-color:azure;
+}
+    </style>
+</head>
+
+
+
+<body>
+    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<!--第一部分-->
+<header class="DS_header" >
+       <span>完善个人信息</span>
+</header>
+
+
+<!--第二部分-->
+<section class="box">
+    <div>
+        <ul>
+            <li>
+                <label for="">姓名：</label>
+                <input type="text" name="user" id="user">
+            </li>
+            <li>
+                <label for="">年龄：</label>
+                <input type="text" name="age" id="age">
+            </li>
+            <li>
+                性别：
+                
+                <input type="radio" name="sex" value="man">男
+                <input type="radio" name="sex" value="woman">女
+               
+            </li>
+            <li>
+                <label for="">籍贯：</label>
+                <input type="text" name="place" id="pacle">
+            </li>
+            <li>
+                <label for="">专业：</label>
+                <input type="text" name="zy" id="zy">
+            </li>
+            <li>
+                <input id="adds" type="button" value="添加" >
+            </li>
+        </ul> 
+    
+    </div>
+
+    <div class="box">
+        <label for="">信息显示：</label>
+         <input type="text" name="user" id="user2">
+        <input class="button" id="chaxun" type="button" value="查询" >
+            
+      
+        
+        <table id="biaoge1">
+            <tr>
+                <th>用  户</th>
+                <th>年  龄</th>
+                <th>性  别</th>
+                <th>籍  贯</th>
+                <th>专  业</th>
+            </tr>
+      </table>
+        </div>
+
+
+
+
+
+</section>
+
+<footer>
+    <ul>
+        <li>
+            <a href="/sy">
+                <img src="/image/nav11.png" alt="">
+                <span > 我的首页</span>    <!--加载行内样式CSS,某个样式代码很少，样式出现次数少-->
+            </a>
+        </li>
+        <li>
+            <a href="/add">
+                <img src="/image/nav20.png" alt="">
+                <span>前往选课</span>
+            </a>
+        </li>
+        <li>
+            <a href="/allStudent">
+                <img src="/image/nav30.png" alt="">
+                <span>查询课程</span>
+            </a>
+        </li>
+        <li>
+            <a href="/delete">
+                <img src="/image/nav40.png" alt="">
+                <span>删除课程</span>
+            </a>
+        </li>
+        <li>
+            <a href="/login">
+                <img src="/image/nav50.png" alt="">
+                <span>退出登录</span>
+            </a>
+        </li>
+    
+    </ul>
+</footer>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script>
+     $("#adds").click(function () {
+        $.post("/adds", { 
+            "user":$("#user").val(),
+            "age":$("#age").val(),
+            "sex":$("input[name=sex]:checked").val(),
+            "pacle":$("#pacle").val(),
+            "zy":$("#zy").val(),
+        }, function (data) {  // data是服务器返回的数据
+            if(data == "1"){
+                alert("完善信息成功")
+
+                //location.href=("/sy");  //..................
+                 }else { 
+                alert("此用户不存在")
+            }
+        });
+    });
+
+
+    $("#chaxun").click(function () {
+    $.post("/sy", { 
+        "user":$("#user2").val(),
+    },(data) => {
+            var str = '';
+            data.results.forEach((item) => {
+                str += `<tr><td>${item.user}</td><td>${item.age}</td><td>${item.sex}</td><td>${item.pacle}</td><td>${item.zy}</td></th>`
+            })
+            $('#biaoge1').append(str);
+        });
+    });
+
+</script>
+</body>
+</html>

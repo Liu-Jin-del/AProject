@@ -1,0 +1,20 @@
+{
+  "name": "demo01",
+  "version": "1.0.0",
+  "description": "课程安排：\r     第1个下午：搭建环境  express\r     第2个下午：写后端代码\r     第3个下午：前后端代码整合",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.9"
+  },
+  "devDependencies": {}
+}

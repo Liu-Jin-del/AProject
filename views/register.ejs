@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"  name="viewport" content="width=device-width,initial-scale=1 user-scalable=no">
+    <title>注册</title>
+    <!--用来加载外部资源的标签-->
+    <!--相对路径和绝对路径-->
+ 
+    <!--加载外部样式CSS,一个项目有很多地方样式都一样时-->
+  
+    <link rel="stylesheet"  href="/css/ExternalStyle.css">
+    <style>
+     
+        .L_second_div{
+            text-align: center;
+        }
+        .L_second_div img{
+            margin-top: 50px;
+        }
+         .L_form_div{
+             background: white;
+             width: 90%;
+             height: 100px;
+             margin: 0 auto;
+             border: 1px  solid #CCCCCC;
+             border-radius: 5px;
+             margin-top: 30px;
+         }
+        .L_account_div{
+           height: 50px;
+            border-bottom: 1px solid #CCCCCC;
+        }
+         .L_form_div div span{
+             font-size: 20px;
+             padding-left: 15px;
+             line-height: 50px;
+         }
+         input{
+             outline: medium;
+             background: transparent;
+             border:0;
+         }
+
+        .L_login_btn_div{
+            background: rgb(36,92,161);
+            height: 50%;
+            width: 90%;
+            border-radius: 10px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .L_login_btn_div input{
+            line-height: 50px;
+            font-size: 20px;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+
+<!--第一部分-->
+<header class="DS_header" >
+    <span>注册</span>
+</header>
+
+
+<!--第二部分-->
+<div class="L_second_div">
+    <img class="L_head_img" src="/image/head.png"alt=""></div>
+
+
+<!--第三部分-->
+<form action="">
+    <div class="L_form_div">
+    <div class="L_account_div">
+        <span>账户名</span>
+        <input  id="R_user"  type="text" name="user"><br>
+    </div>
+        <div>
+            <span>密码</span>
+            <input id="R_password"  type="password" name="password"><br>
+        </div>
+    </div>
+
+
+    <div class="L_login_btn_div">
+    <input type="button" value="注册" id="register">
+
+
+    </div>
+    <div class="L_login_btn_div">
+        <input type="button"  onclick="login_page()" value="返回登陆" >
+    </div>
+</form>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script>
+  function login_page()
+    {
+        window.location = "/login"
+    }
+
+    $("#register").click(function () {
+        $.post("/register", { 
+            "user":$("#R_user").val(),
+            "password":$("#R_password").val(),
+           }, function (data) {  // data是服务器返回的数据
+            if(data == "1"){
+                alert("注册用户成功了~")
+            }else{
+                alert("注册用户失败了~")
+            }
+        });
+    });
+
+</script>
+</body>
+</html>
+

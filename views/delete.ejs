@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"  name="viewport" content="width=device-width,initial-scale=1 user-scalable=no">
+    <title>添加课程</title>
+    <!--用来加载外部资源的标签-->
+    <!--相对路径和绝对路径-->
+    <link rel="short icon" href="/image/icon.png">
+    <!--加载外部样式CSS,一个项目有很多地方样式都一样时-->
+    <link rel="stylesheet"  href="/css/ExternalStyle.css">
+    <!--加载页内样式CSS,一个项目在项目出现的次数比较少,代码量稍大时，-->
+    <style>
+        .changeDiv {
+    font-size: 1em;
+    font-family: 仿宋, serif;
+    width: 60%;
+    display: block;
+    margin-left: 10%;
+    opacity: 0.8;
+    padding: 0.2em;
+    color: #000000;
+    border-radius: 10px;
+    background-color:aliceblue;
+}
+.L_login_btn_div{
+            background: rgb(36,92,161);
+            height: 50%;
+            width: 90%;
+            border-radius: 10px;
+            margin: 20px auto;
+            text-align: center;
+        }
+ 
+
+    </style>
+</head>
+
+<body>
+    <header class="DS_header" >
+        <span>删除已选课程</span>
+ </header>
+ <section class="DS_second_section">
+    <img src="image/banner2.png" alt="">
+
+</section>
+
+    <div class=changeDiv>
+        <li>
+            <label for="">请输入你的姓名：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="text" name="user" id="user">
+        </li>
+        <li>
+            <label for="">请输入你要删除的已选课程：</label>
+            <input type="text" name="book" id="book">
+        </li>
+    </div>
+    <div class="L_login_btn_div">
+        <input type="button" value="删除" id="delete">
+        </div>
+<!--第二部分-->
+<footer>
+    <ul>
+        <li>
+            <a href="/sy">
+                <img src="/image/nav10.png" alt="">
+                <span > 我的首页</span>    <!--加载行内样式CSS,某个样式代码很少，样式出现次数少-->
+            </a>
+        </li>
+        <li>
+            <a href="/add">
+                <img src="/image/nav20.png" alt="">
+                <span>前往选课</span>
+            </a>
+        </li>
+        <li>
+            <a href="/allStudent">
+                <img src="/image/nav30.png" alt="">
+                <span>查询课程</span>
+            </a>
+        </li>
+        <li>
+            <a href="/delete">
+                <img src="/image/nav41.png" alt="">
+                <span>删除课程</span>
+            </a>
+        </li>
+        <li>
+            <a href="/login">
+                <img src="/image/nav50.png" alt="">
+                <span>退出登录</span>
+            </a>
+        </li>
+    
+    </ul>
+</footer>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script>
+
+     $("#delete").click(function () {
+        $.post("/delete", { 
+            "user":$("#user").val(),
+            "book":$("#book").val(),
+        }, function (data) {  // data是服务器返回的数据
+            if(data == "1"){
+                alert("删除成功")
+              }else if (data =="-1"){ 
+                alert("出错了哦~")
+            }
+        });
+    });
+  </script>
+
+</body>
+</html>

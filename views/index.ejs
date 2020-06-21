@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"  >   <meta charset="UTF-8"  name="viewport" content="width=device-width,initial-scale=1 user-scalable=no">
+    <title>学生管理</title>
+    <link rel="stylesheet"  href="/css/ExternalStyle.css">
+    <style>
+        .box {
+    font-size: 1em;
+    font-family: 仿宋, serif;
+    width: 60%;
+    display: block;
+    margin-left: 10%;
+    opacity: 0.8;
+    padding: 0.2em;
+    color: #000000;
+    border-radius: 10px;
+    background-color:aliceblue;
+    text-align: center;
+
+}
+ h1{
+     color: red;
+     text-align: center;
+     border-bottom: 1px solid #111111;
+     padding-bottom: 10px;
+ }
+ .L_two_div{
+    line-height: 50px;
+    text-align: center;
+}
+
+    </style>
+</head>
+
+<body>
+    <header class="DS_header" >
+        <span>查询选课信息</span>
+ </header>
+ <section class="DS_second_section">
+    <img src="image/banner5.png" alt="">
+
+</section>
+    <div class="box">
+    <h1>选课结果</h1>
+    
+    <table id="biaoge2">
+        <tr>
+            <th>学生</th>
+            <th>老师</th>
+            <th>课程</th>
+            <th>时间</th>
+        </tr>
+
+
+    </table>
+
+    <li>
+        <label for="">查询：</label>
+        <input type="text" name="   " id="user">
+    </li>
+
+    </div>
+    <div class="L_two_div">
+        <input type="button" value="搜索" id="index">
+        </div>
+   <!--第二部分-->
+<footer>
+    <ul>
+        <li>
+            <a href="/sy">
+                <img src="/image/nav10.png" alt="">
+                <span > 我的首页</span>    <!--加载行内样式CSS,某个样式代码很少，样式出现次数少-->
+            </a>
+        </li>
+        <li>
+            <a href="/add">
+                <img src="/image/nav20.png" alt="">
+                <span>前往选课</span>
+            </a>
+        </li>
+        <li>
+            <a href="/allStudent">
+                <img src="/image/nav31.png" alt="">
+                <span>查询课程</span>
+            </a>
+        </li>
+        <li>
+            <a href="/delete">
+                <img src="/image/nav40.png" alt="">
+                <span>删除课程</span>
+            </a>
+        </li>
+        <li>
+            <a href="/login">
+                <img src="/image/nav50.png" alt="">
+                <span>退出登录</span>
+            </a>
+        </li>
+    
+    </ul>
+</footer>
+
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+    // $("#index").click(function () {
+    //     $.post("/index", { 
+    //         "user":$("#user").val(),
+        
+           
+    //      }, function (data) {  // data是服务器返回的数据
+    //         if(data == "1"){
+    //             alert("查询课程成功了~")
+    //             location.href=("/allStudent");
+    //         }else{
+    //             alert("查询课程失败了~")
+    //         }
+    //     });
+    // });
+    
+
+
+    $("#index").click(function () {
+    $.post("/index", { 
+        "user":$("#user").val(),
+    },(data) => {
+            var str = '';
+            data.results.forEach((item) => {
+                str += `<tr><td>${item.user}</td><td>${item.tuser}</td><td>${item.book}</td><td>${item.time}</td></th>`
+            })
+            $('#biaoge2').append(str);
+        });
+    });
+</script>
+
+
+
+</body>
+
+</html>
